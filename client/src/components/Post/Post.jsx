@@ -1,33 +1,34 @@
+import { Link } from "react-router-dom";
+
 import "./Post.css";
 
-const Post = () => {
+const Post = ({
+  _id,
+  username,
+  title,
+  photo,
+  createdAt,
+  updatedAt,
+  desc,
+  categories,
+}) => {
   return (
     <div className="post">
-      <img
-        className="postImg"
-        src="http://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-        alt=""
-      />
+      {photo && <img className="postImg" src={photo} alt="img of the Post" />}
+
       <div className="postInfo">
         <div className="postCats">
-          <span className="postCat">Music</span>
-          <span className="postCat">Life</span>
+          {categories.map((category) => (
+            <span className="postCat">{category.name}</span>
+          ))}
         </div>
-        <span className="postTitle">Lorem ipsum dolor sit amet.</span>
+        <Link to={`/post/${_id}`}>
+          <span className="postTitle">{title}</span>
+        </Link>
         <hr />
-        <span className="postDate">1 hour ago</span>
+        <span className="postDate">{new Date(createdAt).toDateString()}</span>
       </div>
-      <p className="postDesc">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum aperiam
-        exercitationem quam voluptate, cum accusamus culpa odio. Molestiae, modi
-        debitis. Quo nihil eius impedit tempora aut alias, error ipsa provident.
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum aperiam
-        exercitationem quam voluptate, cum accusamus culpa odio. Molestiae, modi
-        debitis. Quo nihil eius impedit tempora aut alias, error ipsa provident.
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum aperiam
-        exercitationem quam voluptate, cum accusamus culpa odio. Molestiae, modi
-        debitis. Quo nihil eius impedit tempora aut alias, error ipsa provident.
-      </p>
+      <p className="postDesc">{desc}</p>
     </div>
   );
 };
