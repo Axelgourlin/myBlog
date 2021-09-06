@@ -12,9 +12,12 @@ const Post = ({
   desc,
   categories,
 }) => {
+  const PF = "http://localhost:4001/images/";
   return (
     <div className="post">
-      {photo && <img className="postImg" src={photo} alt="img of the Post" />}
+      {photo && (
+        <img className="postImg" src={PF + photo} alt="img of the Post" />
+      )}
 
       <div className="postInfo">
         <div className="postCats">
